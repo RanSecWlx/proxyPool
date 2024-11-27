@@ -155,6 +155,7 @@ python3 proxyPool.py stopServer
 ```
 
 ### 使用
+![1732693761872](https://github.com/user-attachments/assets/2d9ae32c-0efe-4113-b1b0-c55b385c5c96)
 
 * Api
 
