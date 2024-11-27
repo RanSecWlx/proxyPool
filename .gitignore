@@ -1,0 +1,7 @@
+
+*.pyc
+*.log
+tmp/fofa.py
+tmp/fofa_config.py
+proxyPool/
+backup/dump.rdb
