@@ -91,8 +91,8 @@ def getAll():
     proxies_json = [_.to_dict for _ in proxies]
     #print(type(proxies_json), dir(proxies_json))
     # 按 value 字段倒序排序
-    sorted_proxies = sorted(proxies_json, key=lambda x: x["check_count"], reverse=True)
-    return jsonify(sorted_proxies)
+    sort_proxies = sorted(proxies_json, key=lambda x: x["check_count"], reverse=True)
+    return jsonify(sort_proxies)
     #return jsonify([_.to_dict for _ in proxies])
 
 @app.route('/clear/')
@@ -114,6 +114,7 @@ def getCount():
     source_type_dict = {}
     proxy_type_dict = {}
     check_count_dict = {}
+    region_count_dict = {}
     avail_proxies_list = [] 
 
     min_avail_limit = conf.minAvailLimit
@@ -134,17 +135,26 @@ def getCount():
             avail_proxies_list.append(f"{proxy.proxy_type}://{proxy.proxy}")
             avild_proxies_count += 1
 
+        region  = proxy.region.split()[0]
+        if region not in region_count_dict:
+            region_count_dict[region] = 1
+        else:
+            region_count_dict[region] += 1
+
+
     http_type_sort_dict = OrderedDict(sorted(http_type_dict.items()))
     proxy_type_sort_dict = OrderedDict(sorted(proxy_type_dict.items()))
     source_type_sort_dict = OrderedDict(sorted(source_type_dict.items(), key=lambda x: int(re.search(r'\d+', x[0]).group())))
-    check_count_sorted_dict = dict(sorted(check_count_dict.items(), key=lambda x: int(x[0].split('-')[0]), reverse=True))
+    check_count_sort_dict = dict(sorted(check_count_dict.items(), key=lambda x: int(x[0].split('-')[0]), reverse=True))
+    region_count_sort_dict = dict(sorted(region_count_dict.items(), key=lambda x: x[1], reverse=True))
 
-    #print(check_count_sorted_dict)
+    #print(check_count_sort_dict)
     return json.dumps(OrderedDict([("count", len(proxies)), ("http_type", http_type_sort_dict), ("proxy_type", proxy_type_sort_dict), 
-        ("source", source_type_sort_dict), ("check_count", check_count_sorted_dict), 
+        ("source", source_type_sort_dict), ("region", region_count_sort_dict),
+        ("check_count", check_count_sort_dict), 
         (f"check_count_{min_avail_limit}_count", avild_proxies_count),
         (f"check_count_{min_avail_limit}_proxies", avail_proxies_list)]))
-    #return {"http_type": http_type_dict, "source": source_type_dict, "count": len(proxies), "proxy_type": proxy_type_dict, "check_count": check_count_sorted_dict}
+    #return {"http_type": http_type_dict, "source": source_type_dict, "count": len(proxies), "proxy_type": proxy_type_dict, "check_count": check_count_sort_dict}
 
 def runFlask():
     if platform.system() == "Windows":

@@ -20,14 +20,22 @@ from time import sleep
 from lxml import html
 from util.webRequest import WebRequest
 from lxml.etree import tostring
+from handler.configHandler import ConfigHandler
 
 class ProxyFetcher(object):
     """
     proxy getter
     """
+    
+    conf = ConfigHandler()
+    proxyInfor = conf.apiProxyConfig
+    if len(proxyInfor) >= 8:
+        proxiesInfor = {"http": proxyInfor, "https": proxyInfor}
+    else:
+        proxiesInfor = None
 
-    @staticmethod
-    def freeProxy01():
+    @classmethod
+    def freeProxy01(cls):
         """
         站大爷 https://www.zdaye.com/dayProxy.html
         """
@@ -48,8 +56,8 @@ class ProxyFetcher(object):
                 target_url = "https://www.zdaye.com/" + next_page[0].strip() if next_page else False
                 sleep(5)
 
-    @staticmethod
-    def freeProxy02():
+    @classmethod
+    def freeProxy02(cls):
         """
         代理66 http://www.66ip.cn/
         """
@@ -61,8 +69,8 @@ class ProxyFetcher(object):
                 port = "".join(tr.xpath("./td[2]/text()")).strip()
                 yield "%s:%s" % (ip, port)
 
-    @staticmethod
-    def freeProxy03():
+    @classmethod
+    def freeProxy03(cls):
         """ 开心代理 """
         target_urls = ["http://www.kxdaili.com/dailiip.html", "http://www.kxdaili.com/dailiip/2/1.html"]
         for url in target_urls:
@@ -72,8 +80,8 @@ class ProxyFetcher(object):
                 port = "".join(tr.xpath('./td[2]/text()')).strip()
                 yield "%s:%s" % (ip, port)
 
-    @staticmethod
-    def freeProxy04():
+    @classmethod
+    def freeProxy04(cls):
         """ FreeProxyList https://www.freeproxylists.net/zh/ """
         url = "https://www.freeproxylists.net/zh/?c=CN&pt=&pr=&a%5B%5D=0&a%5B%5D=1&a%5B%5D=2&u=50"
         tree = WebRequest().get(url, verify=False).tree
@@ -90,8 +98,8 @@ class ProxyFetcher(object):
             if ip:
                 yield "%s:%s" % (ip, port)
 
-    @staticmethod
-    def freeProxy05(page_count=1):
+    @classmethod
+    def freeProxy05(cls, page_count=1):
         """ 快代理 https://www.kuaidaili.com """
         url_pattern = [
             'https://www.kuaidaili.com/free/inha/{}/',
@@ -109,8 +117,8 @@ class ProxyFetcher(object):
             for tr in proxy_list[1:]:
                 yield ':'.join(tr.xpath('./td/text()')[0:2])
 
-    @staticmethod
-    def freeProxy06():
+    @classmethod
+    def freeProxy06(cls):
         """ 冰凌代理 https://www.binglx.cn """
         url = "https://www.binglx.cn/?page=1"
         try:
@@ -121,8 +129,8 @@ class ProxyFetcher(object):
         except Exception as e:
             print(e)
 
-    @staticmethod
-    def freeProxy07():
+    @classmethod
+    def freeProxy07(cls):
         """ 云代理 """
         urls = ['http://www.ip3366.net/free/?stype=1', "http://www.ip3366.net/free/?stype=2"]
         for url in urls:
@@ -131,8 +139,8 @@ class ProxyFetcher(object):
             for proxy in proxies:
                 yield ":".join(proxy)
 
-    @staticmethod
-    def freeProxy08():
+    @classmethod
+    def freeProxy08(cls):
         """ 小幻代理 """
         urls = ['https://ip.ihuan.me/address/5Lit5Zu9.html']
         for url in urls:
@@ -141,8 +149,8 @@ class ProxyFetcher(object):
             for proxy in proxies:
                 yield ":".join(proxy)
 
-    @staticmethod
-    def freeProxy09(page_count=1):
+    @classmethod
+    def freeProxy09(cls, page_count=1):
         """ 免费代理库 """
         for i in range(1, page_count + 1):
             url = 'http://ip.jiangxianli.com/?country=中国&page={}'.format(i)
@@ -152,8 +160,8 @@ class ProxyFetcher(object):
                     continue
                 yield ":".join(tr.xpath("./td/text()")[0:2]).strip()
 
-    @staticmethod
-    def freeProxy10():
+    @classmethod
+    def freeProxy10(cls):
         """ 89免费代理 """
         r = WebRequest().get("https://www.89ip.cn/index_1.html", timeout=10)
         proxies = re.findall(
@@ -162,8 +170,8 @@ class ProxyFetcher(object):
         for proxy in proxies:
             yield ':'.join(proxy)
 
-    @staticmethod
-    def freeProxy11():
+    @classmethod
+    def freeProxy11(cls):
         """ 稻壳代理 https://www.docip.net/ """
         r = WebRequest().get("https://www.docip.net/data/free.json", timeout=10)
         try:
@@ -172,19 +180,14 @@ class ProxyFetcher(object):
         except Exception as e:
             print(e)
 
-    @staticmethod
-    def freeProxy12():
+    @classmethod
+    def freeProxy12(cls):
         """ 稻壳代理 https://proxylist.geonode.com/api/proxy-list """
         target_urls=[
             'https://proxylist.geonode.com/api/proxy-list?protocols=http&limit=500&page=1&sort_by=lastChecked&sort_type=desc',
             'https://proxylist.geonode.com/api/proxy-list?protocols=socks4&limit=500&page=1&sort_by=lastChecked&sort_type=desc',
             'https://proxylist.geonode.com/api/proxy-list?protocols=socks5&limit=500&page=1&sort_by=lastChecked&sort_type=desc'
         ]
-        
-        proxies = {
-            "http": "http://127.0.0.1:1080",
-            "https": "http://127.0.0.1:1080"
-        }
 
         for url in target_urls:
             try:
@@ -196,13 +199,10 @@ class ProxyFetcher(object):
                 print(e)
                 pass
 
-    @staticmethod
-    def freeProxy13():
+    @classmethod
+    def freeProxy13(cls):
         """ 稻壳代理 https://raw.githubusercontent.com/TheSpeedX/SOCKS-List/master/ """
-        proxies = {
-            "http": "http://127.0.0.1:1080",
-            "https": "http://127.0.0.1:1080"
-        }
+        
         target_urls = [
             'https://raw.githubusercontent.com/TheSpeedX/SOCKS-List/master/http.txt',
             'https://raw.githubusercontent.com/TheSpeedX/SOCKS-List/master/socks4.txt',
@@ -226,15 +226,15 @@ class ProxyFetcher(object):
                 elif url.endswith("socks5.txt"):
                     proxy_type = proxy_types[3]
 
-                r = WebRequest().get(url, proxies, verify=False, timeout=10)
+                r = WebRequest().get(url, proxies = cls.proxiesInfor, verify=False, timeout=10)
                 for each in r.text.splitlines():
                     yield each, proxy_type
             except Exception as e:
                 print(e)
                 pass
 
-    @staticmethod
-    def freeProxy96():
+    @classmethod
+    def freeProxy96(cls):
         target_urls = [
             'https://106.14.14.210/proxies_status',
             'http://47.243.63.109:5000/proxies_status',
@@ -266,8 +266,8 @@ class ProxyFetcher(object):
                 pass
 
 
-    @staticmethod
-    def freeProxy97():
+    @classmethod
+    def freeProxy97(cls):
         """ http://example.com/en/ """
         # URL
         url = 'https://geoxy.io/proxies?page=%d&count=50'
@@ -310,8 +310,8 @@ class ProxyFetcher(object):
                 pass
             
 
-    @staticmethod
-    def freeProxy98():
+    @classmethod
+    def freeProxy98(cls):
         """ http://example.com/en/ """
         target_urls=[
             "http://42.192.20.108:5000/all/",
@@ -333,8 +333,8 @@ class ProxyFetcher(object):
                 print(e)
                 pass
 
-    @staticmethod
-    def freeProxy99():
+    @classmethod
+    def freeProxy99(cls):
         """ http://example.com/en/ """
 	
 	# URL
@@ -409,13 +409,9 @@ class ProxyFetcher(object):
                 print(e)
                 pass
             
-    @staticmethod
-    def freeProxy100():
+    @classmethod
+    def freeProxy100(cls):
         """ http://example.com/en/ """
-        proxies = {
-            "http": "http://127.0.0.1:1080",
-            "https": "http://127.0.0.1:1080"
-        }
 
         over = 0
         pageid = 1
@@ -451,8 +447,8 @@ class ProxyFetcher(object):
                 break
 
 
-    @staticmethod
-    def freeProxy101():
+    @classmethod
+    def freeProxy101(cls):
         """ read proxy lists from file """
 
         filelist = [
@@ -519,8 +515,8 @@ class ProxyFetcher(object):
         except Exception as e:
             print(e)
         """
-    # @staticmethod
-    # def wallProxy01():
+    # @classmethod
+    # def wallProxy01(cls):
     #     """
     #     PzzQz https://pzzqz.com/
     #     """
@@ -542,8 +538,8 @@ class ProxyFetcher(object):
     #     except Exception as e:
     #         print(e)
 
-    # @staticmethod
-    # def freeProxy10():
+    # @classmethod
+    # def freeProxy10(cls):
     #     """
     #     墙外网站 cn-proxy
     #     :return:
@@ -556,8 +552,8 @@ class ProxyFetcher(object):
     #         for proxy in proxies:
     #             yield ':'.join(proxy)
 
-    # @staticmethod
-    # def freeProxy11():
+    # @classmethod
+    # def freeProxy11(cls):
     #     """
     #     https://proxy-list.org/english/index.php
     #     :return:
@@ -571,8 +567,8 @@ class ProxyFetcher(object):
     #         for proxy in proxies:
     #             yield base64.b64decode(proxy).decode()
 
-    # @staticmethod
-    # def freeProxy12():
+    # @classmethod
+    # def freeProxy12(cls):
     #     urls = ['https://list.proxylistplus.com/Fresh-HTTP-Proxy-List-1']
     #     request = WebRequest()
     #     for url in urls:

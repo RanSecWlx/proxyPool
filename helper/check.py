@@ -23,10 +23,9 @@ from helper.validator import ProxyValidator
 from handler.proxyHandler import ProxyHandler
 from handler.configHandler import ConfigHandler
 
-
 class DoValidator(object):
     """ 执行校验 """
-
+    
     conf = ConfigHandler()
 
     @classmethod
@@ -79,6 +78,7 @@ class DoValidator(object):
     @classmethod
     def regionGetter(cls, proxy):
         try:
+
             url = 'https://searchplugin.csdn.net/api/v1/ip/get?ip=%s' % proxy.proxy.split(':')[0]
             r = WebRequest().get(url=url, retry_time=1, timeout=2).json
             return r['data']['address']
@@ -156,8 +156,15 @@ def Checker(tp, queue):
     :param queue: Proxy Queue
     :return:
     """
+    conf = ConfigHandler()
+
     thread_list = list()
-    for index in range(60):
+    if "raw" in tp:
+        threadsNum = conf.rawThreadsNum
+    else:
+        threadsNum = conf.useThreadsNum 
+
+    for index in range(threadsNum):
         thread_list.append(_ThreadChecker(tp, queue, "thread_%s" % str(index).zfill(2)))
 
     for thread in thread_list:

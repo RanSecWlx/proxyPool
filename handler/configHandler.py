@@ -98,6 +98,38 @@ class ConfigHandler(withMetaclass(Singleton)):
         return bool(os.getenv("PROXY_REGION", setting.PROXY_REGION))
 
     @LazyProperty
+    def apiProxyConfig(self):
+        return os.getenv("API_PROXY_CONFIG", setting.API_PROXY_CONFIG)
+
+    @LazyProperty
+    def rawThreadsNum(self):
+        return os.getenv("RAW_THREADS_NUM", setting.RAW_THREADS_NUM)
+
+    @LazyProperty
+    def useThreadsNum(self):
+        return os.getenv("USE_THREADS_NUM", setting.USE_THREADS_NUM)
+    
+    @LazyProperty
+    def rawIntervalMin(self):
+        return os.getenv("RAW_INTERVAL_MIN", setting.RAW_INTERVAL_MIN)
+
+    @LazyProperty
+    def useIntervalMin(self):
+        return os.getenv("USE_INTERVAL_MIN", setting.USE_INTERVAL_MIN)
+
+    @LazyProperty
+    def threadPoolWorksNum(self):
+        return os.getenv("THREADPOOL_WORKS_NUM", setting.THREADPOOL_WORKS_NUM)
+
+    @LazyProperty
+    def processPoolWorksNum(self):
+        return os.getenv("PROCESSPOOL_WORKS_NUM", setting.PROCESSPOOL_WORKS_NUM)
+
+    @LazyProperty
+    def jobInstancesNum(self):
+        return os.getenv("JOB_INSTANCES_NUM", setting.JOB_INSTANCES_NUM)
+
+    @LazyProperty
     def timezone(self):
         return os.getenv("TIMEZONE", setting.TIMEZONE)
 
