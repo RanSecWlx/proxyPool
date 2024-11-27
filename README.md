@@ -277,7 +277,8 @@ python3 proxyPool.py stopServer
 ```
 
 ### 使用
-![1732693761872](https://github.com/user-attachments/assets/2d9ae32c-0efe-4113-b1b0-c55b385c5c96)
+![image](https://github.com/user-attachments/assets/284f6600-d634-433f-b464-c6d175382a36)![image](https://github.com/user-attachments/assets/e9c7de0b-ee25-4aa5-8fb6-4331b16b5631)![image](https://github.com/user-attachments/assets/a178d3b0-2545-4b1e-80aa-74cb557c0f14)
+![image](https://github.com/user-attachments/assets/94d97304-8c12-4ed3-8d2d-af57bfc2e875)
 
 * Api
 
