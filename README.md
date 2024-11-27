@@ -13,7 +13,8 @@ ProxyPool 代理IP池
 
 ### ProxyPool
 
-<pre>代理IP池项目是从https://github.com/jhao104/proxy_pool.git clone而来，对 ProxyPool 代理的二次魔改，除了原有的HTTP代理外，新增了对SOCKS4、SOCKS5代理协议支持，增加了完善了proxy fetch来源，改善了部分功能，如/count请求、server和schedule模式形成守护进程等，优化修改了部分bug，快速实现大量活跃可用代理的持续监测收集工作。</pre><pre>代理IP池项目,主要功能为定时采集网上发布或者手工收录的免费代理验证入库，定时验证入库的代理保证代理的可用性，提供API和CLI两种使用方式，同时你也可以扩展代理源以增加代理池IP的质量和数量。</pre>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;代理IP池项目是从https://github.com/jhao104/proxy_pool.git clone而来，对 ProxyPool 代理的二次魔改，除了原有的HTTP代理外，新增了对SOCKS4、SOCKS5代理协议支持，增加了完善了proxy fetch来源，改善了部分功能，如/count请求、server和schedule模式形成守护进程等，优化修改了部分bug，快速实现大量活跃可用代理的持续监测收集工作。</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;代理IP池项目,主要功能为定时采集网上发布或者手工收录的免费代理验证入库，定时验证入库的代理保证代理的可用性，提供API和CLI两种使用方式，同时你也可以扩展代理源以增加代理池IP的质量和数量。</p>
 
 PS:本项目目的：人人可建立属于自己的高质量免费代理池。
 
@@ -114,9 +115,9 @@ MIN_AVAIL_LIMIT = 20
 
     
    2、此外，还可以从网络空间测绘引擎上获取免费代理，比如FOFA引擎： <br>
-     获取SOCKS4代理：protocol="socks4" && "Results:request granted";<br>
-     获取SOCKS5代理：protocol=="socks5" && "Version:5 Method:No Authentication(0x00)" && after="2022-02-01";<br>
-     获取HTTP  代理：server=="Mikrotik HttpProxy" && status_code=="401";<br>
+   &nbsp;&nbsp;&nbsp;&nbsp;获取SOCKS4代理：protocol="socks4" && "Results:request granted";<br>
+   &nbsp;&nbsp;&nbsp;&nbsp;获取SOCKS5代理：protocol=="socks5" && "Version:5 Method:No Authentication(0x00)" && after="2022-02-01";<br>
+   &nbsp;&nbsp;&nbsp;&nbsp;获取HTTP  代理：server=="Mikrotik HttpProxy" && status_code=="401";<br>
 
 
    3、在tmp目录下执行bash run.sh 可以在线获取HTTP、SOCKS4、SOCKS5代理，并自动更新到proxyList目录下的配置文件。<br>
