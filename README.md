@@ -339,8 +339,8 @@ class ProxyFetcher(object):
     # ....
 
     # 自定义代理源获取方法
-    @staticmethod
-    def freeProxyCustom1():  # 命名不和已有重复即可
+    @classmethod
+    def freeProxyCustom1(cls):  # 命名不和已有重复即可
 
         # 通过某网站或者某接口或某数据库获取代理
         # 假设你已经拿到了一个代理列表
