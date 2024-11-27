@@ -29,6 +29,11 @@ PS:本项目目的：人人可建立属于自己的高质量免费代理池。
 [![](https://img.shields.io/badge/Python-3.10-blue.svg)](https://docs.python.org/3.10/)
 [![](https://img.shields.io/badge/Python-3.11-blue.svg)](https://docs.python.org/3.11/)
 
+### 项目效果
+
+![image](https://github.com/user-attachments/assets/284f6600-d634-433f-b464-c6d175382a36)![image](https://github.com/user-attachments/assets/e9c7de0b-ee25-4aa5-8fb6-4331b16b5631)![image](https://github.com/user-attachments/assets/a178d3b0-2545-4b1e-80aa-74cb557c0f14)
+![image](https://github.com/user-attachments/assets/94d97304-8c12-4ed3-8d2d-af57bfc2e875)
+
 ### 运行项目
 
 ##### 下载代码:
@@ -275,10 +280,6 @@ python3 proxyPool.py stopSchedule
 python3 proxyPool.py startServer
 python3 proxyPool.py stopServer
 ```
-
-### 使用
-![image](https://github.com/user-attachments/assets/284f6600-d634-433f-b464-c6d175382a36)![image](https://github.com/user-attachments/assets/e9c7de0b-ee25-4aa5-8fb6-4331b16b5631)![image](https://github.com/user-attachments/assets/a178d3b0-2545-4b1e-80aa-74cb557c0f14)
-![image](https://github.com/user-attachments/assets/94d97304-8c12-4ed3-8d2d-af57bfc2e875)
 
 * Api
 
