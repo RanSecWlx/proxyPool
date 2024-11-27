@@ -13,7 +13,7 @@ ProxyPool 代理IP池
 
 ### ProxyPool
 
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;代理IP池项目是从https://github.com/jhao104/proxy_pool.git clone而来，对 ProxyPool 代理的二次魔改，除了原有的HTTP代理外，新增了对SOCKS4、SOCKS5代理协议支持，增加了完善了proxy fetch来源，改善了部分功能，如/count请求、server和schedule模式形成守护进程等，优化修改了部分bug，快速实现大量活跃可用代理的持续监测收集工作。</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;代理IP池项目是从https://github.com/jhao104/proxy_pool.git clone而来，对 ProxyPool 代理的二次魔改，除了原有的HTTP代理外，新增了对SOCKS4、SOCKS5、HTTPS代理协议支持，增加了完善了proxy fetch来源，改善了部分功能，如/count请求、server和schedule模式形成守护进程等，优化修改了部分bug，快速实现大量活跃可用代理的持续监测收集工作。</p>
 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;代理IP池项目,主要功能为定时采集网上发布或者手工收录的免费代理验证入库，定时验证入库的代理保证代理的可用性，提供API和CLI两种使用方式，同时你也可以扩展代理源以增加代理池IP的质量和数量。</p>
 
 PS:本项目目的：人人可建立属于自己的高质量免费代理池。
