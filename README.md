@@ -92,8 +92,32 @@ MAX_FAIL_RATE = 0.3
 # proxyCheck时代理数量少于POOL_SIZE_MIN触发抓取
 POOL_SIZE_MIN = 2000
 
-# getAll时，check_count_xxx_proxies 过滤条件下限，筛选出来质量比较高的代理
+# getCount时，check_count_xxx_proxies 过滤条件下限，筛选出来质量比较高的代理
 MIN_AVAIL_LIMIT = 20
+
+# 解决代理源需fanqiang访问问题
+API_PROXY_CONFIG = "http://127.0.0.1:1080"
+
+# 每个proxy采集进程启动的线程数量
+RAW_THREADS_NUM = 50
+
+# 每个proxy检查进程启动的线程数量
+USE_THREADS_NUM = 10
+
+# proxy采集任务每间隔多少分钟执行一次
+RAW_INTERVAL_MIN = 4
+
+# proxy检查任务每间隔多少分钟执行一次
+USE_INTERVAL_MIN = 2
+
+# 控制 执行器（如线程池或进程池）中 最大并发执行任务的数量。
+THREADPOOL_WORKS_NUM = 60
+
+# 一个进程池（ProcessPoolExecutor），最多可以同时运行多少个进程
+PROCESSPOOL_WORKS_NUM = 5
+
+# 控制 同一个任务 在调度器中的最大实例数量
+JOB_INSTANCES_NUM = 30
 
 ```
 
