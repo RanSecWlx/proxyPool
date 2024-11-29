@@ -307,7 +307,7 @@ class ProxyFetcher(object):
 
             except Exception as e:
                 print(e)
-                pass
+                break
             
 
     @classmethod
@@ -407,7 +407,7 @@ class ProxyFetcher(object):
                     break
             except Exception as e:
                 print(e)
-                pass
+                break
             
     @classmethod
     def freeProxy100(cls):
